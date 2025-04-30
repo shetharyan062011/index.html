@@ -7,7 +7,7 @@
 
     <!-- AdSense Placeholder -->
     <!--
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2027912758707953/4170825044"
          crossorigin="anonymous"></script>
     -->
 
@@ -55,7 +55,7 @@
         .tool-icon.icon-day-counter::before { content: '??'; }
         .tool-icon.icon-calculator::before { content: '??'; }
         .tool-icon.icon-color-picker::before { content: '??'; }
-        .tool-icon.icon-morse::before { content: '···'; font-weight: bold; }
+        .tool-icon.icon-morse::before { content: 'Â·Â·Â·'; font-weight: bold; }
         .tool-icon.icon-device-info::before { content: '??'; }
         .tool-icon.icon-paint::before { content: '???'; }
         .tool-icon.icon-image-viewer::before { content: '???'; }
@@ -67,7 +67,7 @@
         .tool-icon.icon-random-num::before { content: '#??'; }
         .tool-icon.icon-coin-flip::before { content: '??'; }
         .tool-icon.icon-json-viewer::before { content: '{}'; }
-        .tool-icon.icon-lorem::before { content: '¶'; }
+        .tool-icon.icon-lorem::before { content: 'Â¶'; }
         .tool-icon.icon-word-count::before { content: '??'; }
         .tool-icon.icon-case-converter::before { content: 'Aa'; font-weight: bold;}
         .tool-icon.icon-base64::before { content: '??'; }
@@ -123,8 +123,8 @@
     <!-- Welcome Popup -->
     <div id="welcomePopupOverlay" class="welcome-popup-overlay">
         <div class="welcome-popup">
-            <h2>Welcome! ??</h2>
-            <p>Welcome to Aryan Sheth tools ??</p>
+            <h2>Welcome! </h2>
+            <p>Welcome to Aryan Sheth tools </p>
             <button id="closeWelcomePopup">Get Started</button>
         </div>
     </div>
@@ -194,7 +194,7 @@
         <div class="modal-content">
             <div class="modal-header">
                  <h2 id="modalTitle">Tool Title</h2>
-                 <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+                 <button class="modal-close" onclick="closeModal()" aria-label="Close">Ã—</button>
              </div>
             <div id="modalBody" class="modal-body">
                 <!-- Tool specific content will be loaded here -->
@@ -455,7 +455,7 @@
                modalBody.innerHTML = `<div class="tool-interface"><label for="ucValue">Value:</label> <input type="number" id="ucValue" value="1"><label for="ucFromUnit">From:</label> <select id="ucFromUnit"></select><label for="ucToUnit">To:</label> <select id="ucToUnit"></select><button onclick="convertUnits()">Convert</button><div id="ucResult" class="output-area"></div></div>`;
                populateUnitOptions(); const fromSelect = document.getElementById('ucFromUnit'); if(fromSelect) fromSelect.addEventListener('change', populateToUnits); // Check element before adding listener
            }
-           const unitCategories = { Length: {m: 'Meter (m)', km: 'Kilometer (km)', cm: 'Centimeter (cm)', mm: 'Millimeter (mm)', mi: 'Mile (mi)', yd: 'Yard (yd)', ft: 'Foot (ft)', in: 'Inch (in)'}, WeightMass: {kg: 'Kilogram (kg)', g: 'Gram (g)', mg: 'Milligram (mg)', lb: 'Pound (lb)', oz: 'Ounce (oz)'}, Temperature: {C: 'Celsius (°C)', F: 'Fahrenheit (°F)', K: 'Kelvin (K)'}};
+           const unitCategories = { Length: {m: 'Meter (m)', km: 'Kilometer (km)', cm: 'Centimeter (cm)', mm: 'Millimeter (mm)', mi: 'Mile (mi)', yd: 'Yard (yd)', ft: 'Foot (ft)', in: 'Inch (in)'}, WeightMass: {kg: 'Kilogram (kg)', g: 'Gram (g)', mg: 'Milligram (mg)', lb: 'Pound (lb)', oz: 'Ounce (oz)'}, Temperature: {C: 'Celsius (Â°C)', F: 'Fahrenheit (Â°F)', K: 'Kelvin (K)'}};
            function populateUnitOptions() { const fS = document.getElementById('ucFromUnit'); if (!fS) return; fS.innerHTML = ''; for (const cat in unitCategories) { const og = document.createElement('optgroup'); og.label = cat; for (const u in unitCategories[cat]) { const o = document.createElement('option'); o.value = u; o.textContent = unitCategories[cat][u]; og.appendChild(o); } fS.appendChild(og); } populateToUnits(); }
            function populateToUnits() { const fS = document.getElementById('ucFromUnit'); const tS = document.getElementById('ucToUnit'); if (!fS || !tS) return; const sO = fS.options[fS.selectedIndex]; if (!sO || !sO.parentElement) return; const cFG = sO.parentElement.label; const cTV = tS.value; tS.innerHTML = ''; if (unitCategories[cFG]) { const og = document.createElement('optgroup'); og.label = cFG; for (const u in unitCategories[cFG]) { const o = document.createElement('option'); o.value = u; o.textContent = unitCategories[cFG][u]; og.appendChild(o); } tS.appendChild(og); } if (Array.from(tS.options).some(opt => opt.value === cTV)) { tS.value = cTV; } else if (tS.options.length > 1 && fS.value !== tS.options[0].value) { tS.value = tS.options[0].value; } else if (tS.options.length > 1) { tS.value = tS.options[1].value; } else if (tS.options.length === 1) { tS.value = tS.options[0].value; } }
            function convertUnits() { const valInput = document.getElementById('ucValue'); const fromInput = document.getElementById('ucFromUnit'); const toInput = document.getElementById('ucToUnit'); const rD = document.getElementById('ucResult'); if (!valInput || !fromInput || !toInput || !rD) { console.error("Unit Converter elements missing"); return; } const v = parseFloat(valInput.value); const fU = fromInput.value; const tU = toInput.value; if (isNaN(v)) { rD.textContent = "Invalid number."; return; } if (fU === tU) { rD.textContent = `${v} ${fU} = ${v} ${tU}`; return; } const fact = { m: 1, km: 1000, cm: 0.01, mm: 0.001, mi: 1609.34, yd: 0.9144, ft: 0.3048, in: 0.0254, kg: 1, g: 0.001, mg: 1e-6, lb: 0.453592, oz: 0.0283495 }; let res; const tempUnits = ['C', 'F', 'K']; const lenUnits = Object.keys(unitCategories.Length); const massUnits = Object.keys(unitCategories.WeightMass); if (tempUnits.includes(fU)) { if (!tempUnits.includes(tU)) { rD.textContent = "Cannot convert Temp."; return; } if (fU === 'C') res = (tU === 'F') ? (v * 9/5) + 32 : (v + 273.15); else if (fU === 'F') res = (tU === 'C') ? (v - 32) * 5/9 : (((v - 32) * 5/9) + 273.15); else res = (tU === 'C') ? v - 273.15 : (((v - 273.15) * 9/5) + 32); } else if (fact[fU] && fact[tU]) { if ((lenUnits.includes(fU) && lenUnits.includes(tU)) || (massUnits.includes(fU) && massUnits.includes(tU))) { const vB = v * fact[fU]; res = vB / fact[tU]; } else { rD.textContent = `Cannot convert ${fU} to ${tU}.`; return; } } else { rD.textContent = `Conversion ${fU} to ${tU} not supported.`; return; } rD.textContent = `${v} ${fU} = ${res.toFixed(4)} ${tU}`; }
